@@ -1,8 +1,8 @@
 #!/usr/bin/env zsh
 
 # Load common exports
-if [ -f "$HOME/.exports" ]; then
-    source "$HOME/.exports"
+if [ -f "$HOME/.config/shell/exports" ]; then
+    source "$HOME/.config/shell/exports"
 fi
 
 # zsh

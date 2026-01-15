@@ -6,8 +6,8 @@ if [ -f /etc/bashrc ]; then
 fi
 
 # Load common exports
-if [ -f "$HOME/.exports" ]; then
-    source "$HOME/.exports"
+if [ -f "$HOME/.config/shell/exports" ]; then
+    source "$HOME/.config/shell/exports"
 fi
 
 # Bash specific settings
@@ -17,11 +17,11 @@ shopt -s checkwinsize
 # Prompt
 export PS1="[\u@\h \W]\\$ "
 
-# Load common aliases and functions
-if [ -f "$HOME/.aliases" ]; then
-    source "$HOME/.aliases"
+# Load common aliases
+if [ -f "$HOME/.config/shell/aliases" ]; then
+    source "$HOME/.config/shell/aliases"
 fi
 
-if [ -f "$HOME/.functions" ]; then
-    source "$HOME/.functions"
+if [ -f "$HOME/.config/shell/functions" ]; then
+    source "$HOME/.config/shell/functions"
 fi

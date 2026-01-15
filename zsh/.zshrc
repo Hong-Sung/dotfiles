@@ -9,13 +9,13 @@ setopt INC_APPEND_HISTORY
 bindkey '^R' history-incremental-search-backward
 
 # Load common aliases
-if [ -f "$HOME/.aliases" ]; then
-    source "$HOME/.aliases"
+if [ -f "$HOME/.config/shell/aliases" ]; then
+    source "$HOME/.config/shell/aliases"
 fi
 
 # Load common functions
-if [ -f "$HOME/.functions" ]; then
-    source "$HOME/.functions"
+if [ -f "$HOME/.config/shell/functions" ]; then
+    source "$HOME/.config/shell/functions"
 fi
 
 # Zsh specific aliases
