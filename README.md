@@ -1,35 +1,51 @@
+# Dotfiles
 
-## 1단계: 베어 저장소 복제 (Clone)
+## 1. 개요 (Overview)
+GNU Stow를 사용하여 macOS 설정 파일(dotfiles)을 관리합니다.
+기존의 Bare Repo 방식에서 Symlink 방식으로 변경되었습니다.
 
-GitHub에 있는 원격 저장소 내용을 $HOME 디렉터리에 .dotfiles라는 이름의 베어 저장소로 복제합니다.
+## 2. 설치 및 설정 (Installation)
 
-```
-git clone --bare git@github.com:Hong-Sung/dotfiles.git $HOME/.dotfiles
-```
-
-## 2단계: 별칭(alias) 설정
-
-새로운 시스템에는 아직 dotfiles 별칭이 없으므로, 일시적으로 이 셸에서 사용할 별칭을 정의합니다.
-
-```
-alias dotfiles='git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
+### 2-1. 저장소 클론
+```bash
+# 원하는 디렉토리에 클론 (예: ~/work/dotfiles)
+git clone git@github.com:Hong-Sung/dotfiles.git ~/work/dotfiles
+cd ~/work/dotfiles
 ```
 
-## 3단계: 파일 체크아웃
+### 2-2. GNU Stow 설치
 
-`dotfiles` 별칭을 사용해 원격 저장소의 파일을 $HOME 디렉터리로 체크아웃합니다.
-
-만약 홈 디렉터리에 기존 파일이 있고 덮어쓰고 싶다면 -f 옵션을 추가합니다
-
-
-```
-dotfiles checkout [-f]
+**macOS:**
+```bash
+brew install stow
 ```
 
-## 4단계: untracked files 숨기기 (옵션)
-
-dotfiles status를 실행했을 때 홈 디렉터리의 모든 파일이 보이지 않도록 untracked files를 숨깁니다.
-
+**Ubuntu / Debian:**
+```bash
+sudo apt update
+sudo apt install stow
 ```
-dotfiles config --local status.showUntrackedFiles no
+
+## 3. 적용 (Apply)
+원하는 패키지를 홈 디렉토리(`~`)에 심볼릭 링크로 연결합니다.
+
+```bash
+# 전체 적용
+stow --target=$HOME zsh git vim tmux
+
+# 특정 패키지만 적용 (예: zsh)
+stow --target=$HOME zsh
 ```
+
+## 4. 제거 (Remove)
+심볼릭 링크를 제거하고 싶을 때는 `-D` 옵션을 사용합니다.
+
+```bash
+stow -D --target=$HOME zsh
+```
+
+## 디렉토리 구조
+- `zsh/`: .zshrc, .zprofile, .zshenv
+- `git/`: .gitconfig
+- `vim/`: .vimrc
+- `tmux/`: .tmux.conf

@@ -5,6 +5,9 @@ setopt HIST_REDUCE_BLANKS
 setopt SHARE_HISTORY
 setopt INC_APPEND_HISTORY
 
+# bindkey
+bindkey '^R' history-incremental-search-backward
+
 # User specific alias
 alias h="history 1"
 alias so="source $HOME/.zshrc"
@@ -13,6 +16,7 @@ alias vz="vim $HOME/.zshrc"
 alias vi="vim -u $HOME/.vimrc"
 alias vssh="vim $HOME/.ssh/config"
 alias vgit="vim $HOME/.gitconfig"
+alias vtmux="vim $HOME/.tmux.conf"
 alias vgitignore="vim $HOME/.gitignore"
 
 # dotfiles
@@ -30,3 +34,7 @@ autoload -U compinit; compinit
 
 # git
 git config --global core.excludesfile "$HOME/.gitignore"
+
+
+# Added by Antigravity
+export PATH="/Users/hoskim/.antigravity/antigravity/bin:$PATH"
