@@ -20,7 +20,7 @@ fi
 
 # Zsh specific aliases
 alias so="source $HOME/.zshrc"
-alias vz="vim $HOME/.zshrc"
+alias vs="vim $HOME/.zshrc"
 alias ve="vim $HOME/.zshenv"
 
 # Completion

@@ -17,6 +17,11 @@ shopt -s checkwinsize
 # Prompt
 export PS1="[\u@\h \W]\\$ "
 
+# Bash specific aliases
+alias so="source $HOME/.bashrc"
+alias vs="vim $HOME/.bashrc"
+alias ve="vim $HOME/.profile"
+
 # Load common aliases
 if [ -f "$HOME/.config/shell/aliases" ]; then
     source "$HOME/.config/shell/aliases"
