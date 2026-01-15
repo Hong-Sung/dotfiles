@@ -1,0 +1,18 @@
+# Common Environment Variables
+
+export LANG=en_US.UTF-8
+export EDITOR="vim"
+export VISUAL="vim"
+
+# XDG
+export XDG_CONFIG_HOME="$HOME/.config"
+export XDG_DATA_HOME="$HOME/.local/share"
+export XDG_CACHE_HOME="$HOME/.cache"
+
+# PATH
+export PATH=$XDG_CONFIG_HOME/bin:$PATH
+# Antigravity PATH
+export PATH="/Users/hoskim/.antigravity/antigravity/bin:$PATH"
+
+# SSH
+export SSH_ENV="$HOME/.ssh/agent-environment"

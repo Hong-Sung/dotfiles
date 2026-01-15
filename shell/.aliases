@@ -1,0 +1,14 @@
+# Common Aliases (shared between bash and zsh)
+
+alias h="history 1"
+alias ll='ls -alF'
+alias la='ls -A'
+alias l='ls -CF'
+alias gs='git status'
+
+# Editors & Configs
+alias vi="vim -u $HOME/.vimrc"
+alias vssh="vim $HOME/.ssh/config"
+alias vgit="vim $HOME/.gitconfig"
+alias vtmux="vim $HOME/.tmux.conf"
+alias vgitignore="vim $HOME/.gitignore"

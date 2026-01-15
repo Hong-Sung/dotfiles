@@ -8,33 +8,23 @@ setopt INC_APPEND_HISTORY
 # bindkey
 bindkey '^R' history-incremental-search-backward
 
-# User specific alias
-alias h="history 1"
+# Load common aliases
+if [ -f "$HOME/.aliases" ]; then
+    source "$HOME/.aliases"
+fi
+
+# Load common functions
+if [ -f "$HOME/.functions" ]; then
+    source "$HOME/.functions"
+fi
+
+# Zsh specific aliases
 alias so="source $HOME/.zshrc"
-alias ve="vim $HOME/.zshenv"
 alias vz="vim $HOME/.zshrc"
-alias vi="vim -u $HOME/.vimrc"
-alias vssh="vim $HOME/.ssh/config"
-alias vgit="vim $HOME/.gitconfig"
-alias vtmux="vim $HOME/.tmux.conf"
-alias vgitignore="vim $HOME/.gitignore"
-
-# dotfiles
-alias dotfiles='git --git-dir="$HOME/.dotfiles/" --work-tree="$HOME"'
-dotfiles config status.showUntrackedFiles no
-
-# User specific functions
-ff()   { grep -Rnw . -e "$1"; }
-ffc()  { grep --include=\*.c -Rnw . -e "$1"; }
-ffh()  { grep --include=\*.h -Rnw . -e "$1"; }
-ffch() { grep --include=\*.{c,h} -Rnw . -e "$1"; }
+alias ve="vim $HOME/.zshenv"
 
 # Completion
 autoload -U compinit; compinit
 
 # git
 git config --global core.excludesfile "$HOME/.gitignore"
-
-
-# Added by Antigravity
-export PATH="/Users/hoskim/.antigravity/antigravity/bin:$PATH"

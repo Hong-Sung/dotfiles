@@ -49,3 +49,9 @@ stow -D --target=$HOME zsh
 - `git/`: .gitconfig
 - `vim/`: .vimrc
 - `tmux/`: .tmux.conf
+- `gemini/`:
+    - .gemini/GEMINI.md
+    - .gemini/antigravity/global_workflows/
+    - .gemini/antigravity/skills/
+- `bash/`: .bashrc, .profile
+- `shell/`: .aliases, .exports, .functions
