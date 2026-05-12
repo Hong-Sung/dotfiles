@@ -13,3 +13,18 @@ else
 fi
 
 mkcd() { mkdir -p "$1" && cd "$1"; }
+
+# SSH agent (Linux only - macOS uses Keychain)
+if [ "$(uname)" != "Darwin" ]; then
+    _start_ssh_agent() {
+        if [ -f "$SSH_ENV" ]; then
+            . "$SSH_ENV" > /dev/null
+            ps -p $SSH_AGENT_PID > /dev/null 2>&1 && return
+        fi
+        ssh-agent > "$SSH_ENV"
+        chmod 600 "$SSH_ENV"
+        . "$SSH_ENV" > /dev/null
+        ssh-add
+    }
+    _start_ssh_agent
+fi
