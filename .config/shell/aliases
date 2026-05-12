@@ -1,14 +1,29 @@
 # Common Aliases (shared between bash and zsh)
 
-alias h="history 1"
-alias ll='ls -alF'
-alias la='ls -A'
-alias l='ls -CF'
+if command -v eza > /dev/null 2>&1; then
+    alias ls='eza'
+    alias ll='eza -lh --git'
+    alias la='eza -lah --git'
+    alias lt='eza --tree --level=2'
+    alias l='eza -CF'
+else
+    alias ll='ls -alF'
+    alias la='ls -A'
+    alias l='ls -CF'
+fi
 alias gs='git status'
+
+# Dotfiles
+alias dotfiles='git --git-dir=$HOME/.dotfiles --work-tree=$HOME'
 
 # Editors & Configs
 alias vi="vim -u $HOME/.vimrc"
+alias vvim="vim $HOME/.vimrc"
 alias vssh="vim $HOME/.ssh/config"
 alias vgit="vim $HOME/.gitconfig"
-alias vtmux="vim $HOME/.tmux.conf"
 alias vgitignore="vim $HOME/.gitignore"
+alias vtmux="vim $HOME/.tmux.conf"
+alias vzp="vim $HOME/.zprofile"
+alias va="vim $HOME/.config/shell/aliases"
+alias vexp="vim $HOME/.config/shell/exports"
+alias vf="vim $HOME/.config/shell/functions"

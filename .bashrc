@@ -18,6 +18,7 @@ shopt -s checkwinsize
 export PS1="[\u@\h \W]\\$ "
 
 # Bash specific aliases
+alias h="history"
 alias so="source $HOME/.bashrc"
 alias vs="vim $HOME/.bashrc"
 alias ve="vim $HOME/.profile"
@@ -30,3 +31,9 @@ fi
 if [ -f "$HOME/.config/shell/functions" ]; then
     source "$HOME/.config/shell/functions"
 fi
+
+# fzf
+command -v fzf > /dev/null 2>&1 && eval "$(fzf --bash)"
+
+# zoxide
+command -v zoxide > /dev/null 2>&1 && eval "$(zoxide init bash)"

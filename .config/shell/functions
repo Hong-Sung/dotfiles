@@ -1,8 +1,15 @@
 # Common Functions
 
-ff()   { grep -Rnw . -e "$1"; }
-ffc()  { grep --include=\*.c -Rnw . -e "$1"; }
-ffh()  { grep --include=\*.h -Rnw . -e "$1"; }
-ffch() { grep --include=\*.{c,h} -Rnw . -e "$1"; }
+if command -v rg > /dev/null 2>&1; then
+    ff()   { rg "$1"; }
+    ffc()  { rg -g '*.c' "$1"; }
+    ffh()  { rg -g '*.h' "$1"; }
+    ffch() { rg -g '*.{c,h}' "$1"; }
+else
+    ff()   { grep -Rnw . -e "$1"; }
+    ffc()  { grep --include=\*.c -Rnw . -e "$1"; }
+    ffh()  { grep --include=\*.h -Rnw . -e "$1"; }
+    ffch() { grep --include=\*.{c,h} -Rnw . -e "$1"; }
+fi
 
 mkcd() { mkdir -p "$1" && cd "$1"; }

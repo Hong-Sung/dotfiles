@@ -18,10 +18,17 @@ if [ -f "$HOME/.config/shell/functions" ]; then
 fi
 
 # Zsh specific aliases
+alias h="history 1"
 alias so="source $HOME/.zshrc"
 alias vs="vim $HOME/.zshrc"
 alias ve="vim $HOME/.zshenv"
 
 # Completion
 autoload -U compinit; compinit
+
+# fzf
+command -v fzf > /dev/null 2>&1 && source <(fzf --zsh)
+
+# zoxide
+command -v zoxide > /dev/null 2>&1 && eval "$(zoxide init zsh)"
 
