@@ -1,5 +1,13 @@
 [core]
 	excludesfile = /Users/hoskim/.gitignore
+	editor = vim
 [user]
 	name = Kim Hong Sung
 	email = unguest89@gmail.com
+[init]
+	defaultBranch = main
+[pull]
+	rebase = true
+[alias]
+	lg = log --oneline --graph --decorate --all
+	st = status
