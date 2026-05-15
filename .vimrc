@@ -9,3 +9,16 @@ set shiftwidth=4
 set softtabstop=4
 set tabstop=4
 
+" 편의성
+set number
+set relativenumber
+set hlsearch
+set incsearch
+set ignorecase
+set smartcase
+set cursorline
+
+" 시각적
+set laststatus=2
+set wildmenu
+
