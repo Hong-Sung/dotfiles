@@ -2,6 +2,11 @@
 
 Bare git repo 방식으로 관리하는 dotfiles입니다.
 
+## 사전 준비
+
+- `git` 설치
+- GitHub SSH 키 등록 (`~/.ssh/config` 및 `ssh-add` 완료 상태)
+
 ## 설치 (새 시스템)
 
 ```bash
@@ -13,7 +18,17 @@ alias dotfiles='git --git-dir=$HOME/.dotfiles --work-tree=$HOME'
 
 # 3. 파일 체크아웃
 dotfiles checkout
+```
 
+> **체크아웃 실패 시** (기존 파일과 충돌하는 경우):
+> ```bash
+> # 기존 파일 백업 후 재시도
+> mkdir -p ~/.dotfiles-backup
+> dotfiles checkout 2>&1 | grep "^\s" | awk '{print $1}' | xargs -I{} mv $HOME/{} ~/.dotfiles-backup/{}
+> dotfiles checkout
+> ```
+
+```bash
 # 4. untracked files 숨기기
 dotfiles config --local status.showUntrackedFiles no
 
@@ -47,6 +62,8 @@ dotfiles pull
 ~/.config/shell/aliases       # 공통 alias (bash/zsh 공유)
 ~/.config/shell/exports       # 공통 환경변수
 ~/.config/shell/functions     # 공통 함수
+~/.config/ghostty/config      # Ghostty 터미널 설정
+~/.config/lazygit/config.yml  # lazygit 설정
 ~/.gemini/GEMINI.md           # Gemini 설정
 ```
 
@@ -63,6 +80,7 @@ dotfiles pull
 | `vssh` | .ssh/config 편집 |
 | `vtmux` | .tmux.conf 편집 |
 | `vvim` | .vimrc 편집 |
+| `vghostty` | Ghostty 설정 편집 |
 | `dotfiles` | dotfiles git 명령 |
 
 ## macOS 전용 설정
