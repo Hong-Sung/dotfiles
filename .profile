@@ -17,3 +17,6 @@ export PATH="$HOME/.local/bin:$PATH"
 if [ -f "$HOME/.bashrc" ]; then
     source "$HOME/.bashrc"
 fi
+
+. "$HOME/.local/share/../bin/env"
+. "$HOME/.cargo/env"

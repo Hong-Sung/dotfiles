@@ -37,3 +37,6 @@ command -v fzf > /dev/null 2>&1 && eval "$(fzf --bash)"
 
 # zoxide
 command -v zoxide > /dev/null 2>&1 && eval "$(zoxide init bash)"
+
+. "$HOME/.local/share/../bin/env"
+. "$HOME/.cargo/env"

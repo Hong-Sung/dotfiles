@@ -32,3 +32,8 @@ command -v fzf > /dev/null 2>&1 && source <(fzf --zsh)
 # zoxide
 command -v zoxide > /dev/null 2>&1 && eval "$(zoxide init zsh)"
 
+
+. "$HOME/.local/share/../bin/env"
+
+# Added by Antigravity IDE
+export PATH="/Users/hoskim/.antigravity-ide/antigravity-ide/bin:$PATH"
