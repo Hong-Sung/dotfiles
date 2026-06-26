@@ -3,19 +3,14 @@ setopt APPEND_HISTORY                       # 세션 종료 시 기존 history�
 setopt HIST_IGNORE_ALL_DUPS                 # 중복은 가장 나중 것만 저장
 setopt HIST_REDUCE_BLANKS
 setopt SHARE_HISTORY
+setopt INC_APPEND_HISTORY
 
 # bindkey
 bindkey '^R' history-incremental-search-backward
 
-# Load common aliases
-if [ -f "$HOME/.config/shell/aliases" ]; then
-    source "$HOME/.config/shell/aliases"
-fi
-
-# Load common functions
-if [ -f "$HOME/.config/shell/functions" ]; then
-    source "$HOME/.config/shell/functions"
-fi
+# Load common aliases and functions
+[[ -r "$HOME/.config/shell/aliases" ]] && source "$HOME/.config/shell/aliases"
+[[ -r "$HOME/.config/shell/functions" ]] && source "$HOME/.config/shell/functions"
 
 # Zsh specific aliases
 alias h="history 1"
@@ -27,13 +22,25 @@ alias ve="vim $HOME/.zshenv"
 autoload -U compinit; compinit
 
 # fzf
-command -v fzf > /dev/null 2>&1 && source <(fzf --zsh)
+if command -v fzf > /dev/null 2>&1 && fzf --zsh > /dev/null 2>&1; then
+    source <(fzf --zsh)
+fi
 
 # zoxide
 command -v zoxide > /dev/null 2>&1 && eval "$(zoxide init zsh)"
 
+# starship
+command -v starship > /dev/null 2>&1 && eval "$(starship init zsh)"
 
-. "$HOME/.local/share/../bin/env"
+# ROS
+[[ -r /opt/ros/jazzy/setup.zsh ]] && source /opt/ros/jazzy/setup.zsh
 
-# Added by Antigravity IDE
-export PATH="/Users/hoskim/.antigravity-ide/antigravity-ide/bin:$PATH"
+# nvm
+export NVM_DIR="$HOME/.config/nvm"
+[[ -s "$NVM_DIR/nvm.sh" ]] && source "$NVM_DIR/nvm.sh"
+[[ -s "$NVM_DIR/bash_completion" ]] && source "$NVM_DIR/bash_completion"
+
+[[ -r "$HOME/.config/local/bin/env" ]] && . "$HOME/.config/local/bin/env"
+[[ -r "$HOME/.local/bin/env" ]] && . "$HOME/.local/bin/env"
+[[ -r "$HOME/.cargo/env" ]] && . "$HOME/.cargo/env"
+[[ -d "$HOME/.antigravity/antigravity/bin" ]] && path_prepend "$HOME/.antigravity/antigravity/bin"

@@ -14,7 +14,7 @@ fi
 alias gs='git status'
 
 # Dotfiles
-alias dotfiles='git --git-dir=$HOME/.dotfiles --work-tree=$HOME'
+alias dotfiles='git --git-dir="$HOME/.dotfiles" --work-tree="$HOME"'
 
 # Editors & Configs
 alias vi="vim -u $HOME/.vimrc"
@@ -28,3 +28,4 @@ alias va="vim $HOME/.config/shell/aliases"
 alias vexp="vim $HOME/.config/shell/exports"
 alias vf="vim $HOME/.config/shell/functions"
 alias vghostty="vim $HOME/.config/ghostty/config"
+alias vncserver="vncserver -geometry 1920x1080 -depth 24 -localhost no"

@@ -1,22 +1,27 @@
 # ~/.profile
 
 # Load common exports
-if [ -f "$HOME/.config/shell/exports" ]; then
-    source "$HOME/.config/shell/exports"
-fi
+[ -r "$HOME/.config/shell/exports" ] && . "$HOME/.config/shell/exports"
 
-# PATH
+# macOS Homebrew
 if [ "$(uname)" = "Darwin" ] && [ -x /opt/homebrew/bin/brew ]; then
     eval "$(/opt/homebrew/bin/brew shellenv)"
 fi
-export PATH="$HOME/.config/bin:$PATH"
-export PATH="$HOME/.local/bin:$PATH"
-[ -d "$HOME/.antigravity/antigravity/bin" ] && export PATH="$HOME/.antigravity/antigravity/bin:$PATH"
 
-# Load .bashrc for interactive settings (aliases, functions, prompt)
-if [ -f "$HOME/.bashrc" ]; then
-    source "$HOME/.bashrc"
+# ArduPilot development paths
+[ -r "$HOME/venv-ardupilot/bin/activate" ] && . "$HOME/venv-ardupilot/bin/activate"
+path_prepend /opt/gcc-arm-none-eabi-10-2020-q4-major/bin
+path_prepend "$HOME/ardupilot/Tools/autotest"
+path_prepend /usr/lib/ccache
+
+[ -r "$HOME/.config/local/bin/env" ] && . "$HOME/.config/local/bin/env"
+[ -r "$HOME/.local/bin/env" ] && . "$HOME/.local/bin/env"
+[ -r "$HOME/.cargo/env" ] && . "$HOME/.cargo/env"
+[ -d "$HOME/.antigravity/antigravity/bin" ] && path_prepend "$HOME/.antigravity/antigravity/bin"
+
+# Load .bashrc for interactive bash login shells.
+if [ -n "$BASH_VERSION" ] && [ -r "$HOME/.bashrc" ]; then
+    case $- in
+        *i*) . "$HOME/.bashrc" ;;
+    esac
 fi
-
-. "$HOME/.local/share/../bin/env"
-. "$HOME/.cargo/env"

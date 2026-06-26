@@ -1,6 +1,7 @@
 # Common Environment Variables
 
 export LANG=en_US.UTF-8
+export LC_MESSAGES=ko_KR.UTF-8
 export EDITOR="vim"
 export VISUAL="vim"
 
@@ -9,5 +10,26 @@ export XDG_CONFIG_HOME="$HOME/.config"
 export XDG_DATA_HOME="$HOME/.local/share"
 export XDG_CACHE_HOME="$HOME/.cache"
 
+path_prepend() {
+    [ -d "$1" ] || return
+    case ":$PATH:" in
+        *":$1:"*) ;;
+        *) PATH="$1:$PATH"; export PATH ;;
+    esac
+}
+
+path_prepend "$XDG_CONFIG_HOME/bin"
+path_prepend "$HOME/.local/bin"
+
 # SSH
 export SSH_ENV="$HOME/.ssh/agent-environment"
+
+# Bun
+export BUN_INSTALL="$HOME/.bun"
+path_prepend "$BUN_INSTALL/bin"
+
+# Gazebo / ArduPilot SITL
+if [ "$(uname)" = "Linux" ] && [ -d "$HOME/ardupilot_gazebo" ]; then
+    [ -d "$HOME/ardupilot_gazebo/models" ] && export GZ_SIM_RESOURCE_PATH="$HOME/ardupilot_gazebo/models:$HOME/ardupilot_gazebo/worlds:${GZ_SIM_RESOURCE_PATH:-}"
+    [ -d /usr/local/lib/ardupilot_gazebo ] && export GZ_SIM_SYSTEM_PLUGIN_PATH="/usr/local/lib/ardupilot_gazebo:${GZ_SIM_SYSTEM_PLUGIN_PATH:-}"
+fi

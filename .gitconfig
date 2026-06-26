@@ -1,5 +1,5 @@
 [core]
-	excludesfile = /Users/hoskim/.gitignore
+	excludesfile = ~/.gitignore
 	editor = vim
 [user]
 	name = Kim Hong Sung

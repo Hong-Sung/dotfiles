@@ -1,9 +1,7 @@
 #!/usr/bin/env zsh
 
 # Load common exports
-if [ -f "$HOME/.config/shell/exports" ]; then
-    source "$HOME/.config/shell/exports"
-fi
+[[ -r "$HOME/.config/shell/exports" ]] && source "$HOME/.config/shell/exports"
 
 # zsh
 #export ZDOTDIR="$XDG_CONFIG_HOME/zsh"
@@ -11,6 +9,3 @@ export ZDOTDIR="$HOME"
 export HISTFILE="$ZDOTDIR/.zhistory"
 export HISTSIZE=10000
 export SAVEHIST=10000
-
-
-. "$HOME/.cargo/env"
