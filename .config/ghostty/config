@@ -1,5 +1,7 @@
-shell-integration-features = ssh-env, ssh-terminfo
-#term = xterm-256color
-
+#shell-integration-features = ssh-env, ssh-terminfo
+term = xterm-256color
 font-family = JetBrainsMono Nerd Font
 font-size = 14
+#theme=Blue Dolphin
+theme=Espresso
+split-divider-color = #888888
