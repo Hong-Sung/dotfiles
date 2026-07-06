@@ -7,3 +7,7 @@ fi
 export PATH="$HOME/.config/bin:$PATH"
 export PATH="$HOME/.local/bin:$PATH"
 [[ -d "$HOME/.antigravity/antigravity/bin" ]] && export PATH="$HOME/.antigravity/antigravity/bin:$PATH"
+
+# >>> Codex installer >>>
+export PATH="/Users/hoskim/.local/bin:$PATH"
+# <<< Codex installer <<<
