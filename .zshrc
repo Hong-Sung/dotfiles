@@ -1,3 +1,12 @@
+# SSH agent-forwarding 소켓은 접속마다 경로가 바뀌는데, 이미 떠 있는 tmux
+# pane은 생성 시점 환경변수를 그대로 물고 있어 재접속 후 죽은 소켓을 참조하게 됨.
+# 안정적인 심볼릭 링크를 매 셸 시작 시 최신 소켓으로 갱신하고, 항상 그 링크
+# 경로를 SSH_AUTH_SOCK으로 사용해 기존 pane에서도 최신 소켓을 따라가게 한다.
+if [ -n "$SSH_AUTH_SOCK" ] && [ -S "$SSH_AUTH_SOCK" ] && [ "$SSH_AUTH_SOCK" != "$HOME/.ssh/ssh_auth_sock" ]; then
+    ln -sf "$SSH_AUTH_SOCK" "$HOME/.ssh/ssh_auth_sock"
+fi
+export SSH_AUTH_SOCK="$HOME/.ssh/ssh_auth_sock"
+
 # history
 setopt APPEND_HISTORY                       # 세션 종료 시 기존 history에 추가
 setopt HIST_IGNORE_ALL_DUPS                 # 중복은 가장 나중 것만 저장
