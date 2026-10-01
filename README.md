@@ -2,39 +2,32 @@
 
 Bare git repo 방식으로 관리하는 dotfiles입니다.
 
-## 사전 준비
-
-- `git` 설치
-- GitHub SSH 키 등록 (`~/.ssh/config` 및 `ssh-add` 완료 상태)
-
 ## 설치 (새 시스템)
 
 ```bash
-# 1. bare repo 클론
-git clone --bare git@github.com:Hong-Sung/dotfiles.git $HOME/.dotfiles
-
-# 2. alias 설정
-alias dotfiles='git --git-dir=$HOME/.dotfiles --work-tree=$HOME'
-
-# 3. 파일 체크아웃
-dotfiles checkout
+curl -fsSL https://raw.githubusercontent.com/Hong-Sung/dotfiles/main/install.sh | bash
 ```
 
-> **체크아웃 실패 시** (기존 파일과 충돌하는 경우):
-> ```bash
-> # 기존 파일 백업 후 재시도
-> mkdir -p ~/.dotfiles-backup
-> dotfiles checkout 2>&1 | grep "^\s" | awk '{print $1}' | xargs -I{} mv $HOME/{} ~/.dotfiles-backup/{}
-> dotfiles checkout
-> ```
+`install.sh`가 하는 일:
+
+- `~/.dotfiles`에 bare repo 클론 (HTTPS라 SSH 키 없이도 동작)
+- 겹치는 기존 파일은 `~/.dotfiles-backup/<날짜>/`로 이동 후 체크아웃
+- `README.md`, `install.sh`는 sparse checkout으로 `$HOME`에 풀지 않음
+- `status.showUntrackedFiles no`, `pull.rebase true` 설정
+- 이미 설치돼 있으면 `pull`만 수행
+
+<details>
+<summary>수동 설치</summary>
 
 ```bash
-# 4. untracked files 숨기기
+git clone --bare https://github.com/Hong-Sung/dotfiles.git $HOME/.dotfiles
+alias dotfiles='git --git-dir=$HOME/.dotfiles --work-tree=$HOME'
+dotfiles checkout   # 충돌 시 기존 파일을 옮긴 뒤 재시도
 dotfiles config --local status.showUntrackedFiles no
-
-# 5. pull 전략 설정
 dotfiles config pull.rebase true
 ```
+
+</details>
 
 ## 사용법
 
