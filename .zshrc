@@ -39,7 +39,12 @@ fi
 command -v zoxide > /dev/null 2>&1 && eval "$(zoxide init zsh)"
 
 # starship
-command -v starship > /dev/null 2>&1 && eval "$(starship init zsh)"
+if command -v starship > /dev/null 2>&1; then
+    eval "$(starship init zsh)"
+else
+    print -P "%F{yellow}[zshrc] starship 미설치 → 기본 프롬프트 사용 (curl -sS https://starship.rs/install.sh | sh)%f"
+    PROMPT='%F{green}%n@%m%f %F{blue}%~%f %# '
+fi
 
 # ROS
 [[ -r /opt/ros/jazzy/setup.zsh ]] && source /opt/ros/jazzy/setup.zsh
@@ -53,3 +58,7 @@ export NVM_DIR="$HOME/.config/nvm"
 [[ -r "$HOME/.local/bin/env" ]] && . "$HOME/.local/bin/env"
 [[ -r "$HOME/.cargo/env" ]] && . "$HOME/.cargo/env"
 [[ -d "$HOME/.antigravity/antigravity/bin" ]] && path_prepend "$HOME/.antigravity/antigravity/bin"
+
+# >>> Codex installer >>>
+export PATH="/home/hoskim/.local/bin:$PATH"
+# <<< Codex installer <<<
