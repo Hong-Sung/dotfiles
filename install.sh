@@ -14,11 +14,23 @@ BACKUP_DIR="$HOME/.dotfiles-backup/$(date +%Y%m%d-%H%M%S)"
 dot() { git --git-dir="$GIT_DIR" --work-tree="$HOME" "$@"; }
 info() { printf '\033[1;34m==>\033[0m %s\n' "$*"; }
 
+# tmux 세션 복원 플러그인 (.tmux.conf의 @plugin 목록과 같아야 한다)
+install_tmux_plugins() {
+    command -v tmux > /dev/null 2>&1 || return 0
+    local dir="$HOME/.tmux/plugins" p
+    mkdir -p "$dir"
+    for p in tpm tmux-resurrect tmux-continuum; do
+        [ -d "$dir/$p" ] || git clone -q "https://github.com/tmux-plugins/$p" "$dir/$p"
+    done
+    info "tmux 플러그인 확인: $dir"
+}
+
 command -v git > /dev/null 2>&1 || { echo "git이 필요합니다." >&2; exit 1; }
 
 if [ -d "$GIT_DIR" ]; then
     info "이미 설치됨: $GIT_DIR → pull"
     dot pull --rebase
+    install_tmux_plugins
     exit 0
 fi
 
@@ -51,6 +63,8 @@ done < <(dot ls-tree -r --name-only HEAD)
 info "체크아웃"
 dot checkout -f
 dot branch --set-upstream-to=origin/main main > /dev/null 2>&1 || true
+
+install_tmux_plugins
 
 # SSH 권한 정리
 [ -d "$HOME/.ssh" ] && chmod 700 "$HOME/.ssh"
