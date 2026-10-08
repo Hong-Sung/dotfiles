@@ -60,5 +60,8 @@ export NVM_DIR="$HOME/.config/nvm"
 [[ -d "$HOME/.antigravity/antigravity/bin" ]] && path_prepend "$HOME/.antigravity/antigravity/bin"
 
 # >>> Codex installer >>>
-export PATH="/home/hoskim/.local/bin:$PATH"
+[[ "$OSTYPE" == linux* ]] && export PATH="/home/hoskim/.local/bin:$PATH"
 # <<< Codex installer <<<
+
+[[ -d "$HOME/Library/Android/sdk/platform-tools" ]] && path_prepend "$HOME/Library/Android/sdk/platform-tools"
+[[ -r "$HOME/.iterm2_shell_integration.zsh" ]] && source "$HOME/.iterm2_shell_integration.zsh"
