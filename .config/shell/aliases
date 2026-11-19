@@ -19,7 +19,7 @@ alias dotfiles='git --git-dir="$HOME/.dotfiles" --work-tree="$HOME"'
 # Editors & Configs
 alias vi="vim -u $HOME/.vimrc"
 alias vvim="vim $HOME/.vimrc"
-alias vssh="vim $HOME/.ssh/config"
+alias vssh="vim $HOME/.ssh/config.local"
 alias vgit="vim $HOME/.gitconfig"
 alias vgitignore="vim $HOME/.gitignore"
 alias vtmux="vim $HOME/.tmux.conf"
