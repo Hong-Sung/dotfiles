@@ -1,1 +1,1 @@
-@[공통 AI 작업 규칙](/home/hoskim/.config/ai/AGENTS.md)
+@[공통 AI 작업 규칙](~/.config/ai/AGENTS.md)
