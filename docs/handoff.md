@@ -1,15 +1,15 @@
 # Handoff
-갱신: 2026-11-26 10:33 · Codex · main / 시작 커밋 `bc4909d`
+갱신: 2026-11-26 10:34 · Codex · main / 직전 커밋 `4da58cb`
 
 ## 지금 하는 일
-- 공통 AI 규칙에 작업 시작 전 권장 모델·reasoning 제시 규칙 반영.
+- 없음.
 
 ## 상태 (완료 / 검증 결과)
-- `.config/ai/AGENTS.md` 수정, `git diff --check` 통과.
-- push 전 원격 `main`은 로컬과 동일한 `bc4909d`로 확인.
+- `.config/ai/AGENTS.md`에 새 작업 시작 전 권장 모델·reasoning 제시 규칙 추가.
+- `git diff --check` 통과. 변경 커밋 `4da58cb`를 `origin/main`에 push 완료.
 
 ## 다음 할 일
-- 변경 커밋 후 `origin/main`에 push.
+- 없음.
 
 ## 미해결 · 주의
 - 없음.
